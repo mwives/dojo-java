@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+  fx:controller="com.dojo.controller.aluno.CadastrarAlunoController" spacing="10"
+  alignment="CENTER">
+
+  <padding>
+    <Insets top="10" right="10" bottom="10" left="10" />
+  </padding>
+
+  <Label text="Cadastrar Aluno" style="-fx-font-size: 18px;" />
+
+  <Label text="Nome" />
+  <TextField fx:id="nomeField" promptText="Digite o nome do aluno" />
+
+  <Label text="Data de Nascimento" />
+  <DatePicker fx:id="dataNascimentoPicker" />
+
+  <!-- <Label text="Faixa Atual" />
+  <TextField fx:id="faixaField" promptText="Digite a faixa atual" /> -->
+  <Label text="Faixa Atual" />
+  <ComboBox fx:id="faixaComboBox" promptText="Selecione a faixa" />
+
+  <HBox spacing="10" alignment="CENTER">
+    <Button text="Salvar" onAction="#salvarAluno" />
+    <Button text="Cancelar" onAction="#cancelarCadastro" />
+  </HBox>
+
+</VBox>
