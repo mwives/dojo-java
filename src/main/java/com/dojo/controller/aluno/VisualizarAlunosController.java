@@ -13,6 +13,8 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -85,6 +87,23 @@ public class VisualizarAlunosController {
         stage.showAndWait();
       } catch (IOException e) {
         e.printStackTrace();
+      }
+    }
+  }
+
+  @FXML
+  private void removerAluno() {
+    Aluno alunoSelecionado = alunosTableView.getSelectionModel().getSelectedItem();
+    if (alunoSelecionado != null) {
+      Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+      alert.setTitle("Confirmar Remoção");
+      alert.setHeaderText("Remover Aluno");
+      alert.setContentText("Tem certeza que deseja remover o aluno " + alunoSelecionado.getNome() + "?");
+
+      if (alert.showAndWait().get() == ButtonType.OK) {
+        alunosList.remove(alunoSelecionado);
+        // TODO: Remover do BD
+        alunosTableView.refresh();
       }
     }
   }

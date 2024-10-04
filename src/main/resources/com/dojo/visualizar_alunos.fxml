@@ -27,6 +27,7 @@
   </TableView>
 
   <Button text="Editar Aluno" onAction="#editarAluno" />
+  <Button text="Remover Aluno" onAction="#removerAluno" />
   <Button text="Atualizar" onAction="#atualizarLista" />
   <Button text="Fechar" onAction="#voltarTela" />
 </VBox>
