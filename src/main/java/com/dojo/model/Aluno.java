@@ -5,19 +5,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Aluno {
+
   private String nome;
   private LocalDate dataNascimento;
-  private String faixaAtual;
+  private String faixa;
 
   private List<Faixa> historicoFaixas;
 
-  public Aluno(String nome, LocalDate dataNascimento, String faixaAtual) {
+  public Aluno(String nome, LocalDate dataNascimento, String faixa) {
     this.nome = nome;
     this.dataNascimento = dataNascimento;
-    this.faixaAtual = faixaAtual;
+    this.faixa = faixa;
     this.historicoFaixas = new ArrayList<>();
   }
 
+  // Getters
   public String getNome() {
     return nome;
   }
@@ -26,13 +28,31 @@ public class Aluno {
     return dataNascimento;
   }
 
-  public String getFaixaAtual() {
-    return faixaAtual;
+  public String getFaixa() {
+    return faixa;
   }
 
+  public Integer getIdade() {
+    return LocalDate.now().getYear() - dataNascimento.getYear();
+  }
+
+  // Setters
+  public void setNome(String nome) {
+    this.nome = nome;
+  }
+
+  public void setDataNascimento(LocalDate dataNascimento) {
+    this.dataNascimento = dataNascimento;
+  }
+
+  public void setFaixa(String faixa) {
+    this.faixa = faixa;
+  }
+
+  // Métodos
   public void adicionarFaixa(Faixa faixa) {
     historicoFaixas.add(faixa);
-    this.faixaAtual = faixa.getCorFaixa();
+    this.faixa = faixa.getCorFaixa();
   }
 
 }
