@@ -109,6 +109,27 @@ public class VisualizarAlunosController {
   }
 
   @FXML
+  private void gerenciarHistoricoFaixas() {
+    Aluno alunoSelecionado = alunosTableView.getSelectionModel().getSelectedItem();
+    if (alunoSelecionado != null) {
+      try {
+        FXMLLoader loader = new FXMLLoader(App.class.getResource("gerenciar_historico_faixas.fxml"));
+        Stage stage = new Stage();
+        stage.setTitle("Gerenciar Histórico de Faixas");
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setScene(new Scene(loader.load()));
+
+        HistoricoFaixasController controller = loader.getController();
+        controller.setAluno(alunoSelecionado); // Passa o aluno selecionado para o próximo controller
+
+        stage.showAndWait();
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+    }
+  }
+
+  @FXML
   private void atualizarLista() {
     carregarAlunos();
   }
@@ -117,4 +138,5 @@ public class VisualizarAlunosController {
   private void voltarTela() throws IOException {
     App.setRoot("main");
   }
+
 }

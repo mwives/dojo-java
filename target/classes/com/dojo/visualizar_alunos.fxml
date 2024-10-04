@@ -28,6 +28,8 @@
 
   <Button text="Editar Aluno" onAction="#editarAluno" />
   <Button text="Remover Aluno" onAction="#removerAluno" />
+  <Button text="Gerenciar Histórico de Faixas" onAction="#gerenciarHistoricoFaixas" />
+
   <Button text="Atualizar" onAction="#atualizarLista" />
   <Button text="Fechar" onAction="#voltarTela" />
 </VBox>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+  fx:controller="com.dojo.controller.aluno.HistoricoFaixasController" spacing="10"
+  alignment="CENTER" prefWidth="600" prefHeight="400">
+
+  <Label text="Gerenciar Histórico de Faixas" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+
+  <TableView fx:id="historicoFaixasTableView" prefHeight="250" prefWidth="550">
+    <columns>
+      <TableColumn fx:id="faixaColumn" text="Faixa" prefWidth="275" />
+      <TableColumn fx:id="dataFaixaColumn" text="Data da Graduação" prefWidth="275" />
+    </columns>
+  </TableView>
+
+  <!-- Formulário -->
+  <HBox spacing="10" alignment="CENTER">
+    <Label text="Nova Faixa:" />
+    <TextField fx:id="faixaTextField" promptText="Cor da Faixa" />
+  </HBox>
+
+  <HBox spacing="10" alignment="CENTER">
+    <Label text="Data da Graduação:" />
+    <DatePicker fx:id="dataGraduacaoDatePicker" promptText="Escolha a data" />
+  </HBox>
+
+  <HBox spacing="10" alignment="CENTER">
+    <Button text="Adicionar Faixa" onAction="#adicionarFaixa" />
+    <Button text="Fechar" onAction="#fecharTela" />
+  </HBox>
+
+</VBox>
