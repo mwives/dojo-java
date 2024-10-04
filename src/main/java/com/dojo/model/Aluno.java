@@ -10,7 +10,7 @@ public class Aluno {
   private LocalDate dataNascimento;
   private String faixa;
 
-  private List<Faixa> historicoFaixas;
+  private List<HistoricoFaixa> historicoFaixas;
 
   public Aluno(String nome, LocalDate dataNascimento, String faixa) {
     this.nome = nome;
@@ -50,7 +50,7 @@ public class Aluno {
   }
 
   // Métodos
-  public void adicionarFaixa(Faixa faixa) {
+  public void adicionarFaixa(HistoricoFaixa faixa) {
     historicoFaixas.add(faixa);
     this.faixa = faixa.getCorFaixa();
   }

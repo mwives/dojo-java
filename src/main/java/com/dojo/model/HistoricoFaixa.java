@@ -1,10 +1,12 @@
 package com.dojo.model;
 
-public class Faixa {
-  private String corFaixa;
-  private String dataObtencao;
+import java.time.LocalDate;
 
-  public Faixa(String corFaixa, String dataObtencao) {
+public class HistoricoFaixa {
+  private String corFaixa;
+  private LocalDate dataObtencao;
+
+  public HistoricoFaixa(String corFaixa, LocalDate dataObtencao) {
     this.corFaixa = corFaixa;
     this.dataObtencao = dataObtencao;
   }
