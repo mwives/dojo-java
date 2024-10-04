@@ -32,7 +32,7 @@
 
   <HBox spacing="10" alignment="CENTER">
     <Button text="Salvar" onAction="#salvarAluno" />
-    <Button text="Cancelar" onAction="#cancelarCadastro" />
+    <Button text="Voltar" onAction="#cancelarCadastro" />
   </HBox>
 
 </VBox>

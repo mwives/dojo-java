@@ -1,5 +1,6 @@
 package com.dojo.controller.aluno;
 
+import java.io.IOException;
 import java.time.LocalDate;
 
 import com.dojo.model.Aluno;
@@ -23,7 +24,6 @@ public class CadastrarAlunoController {
 
   @FXML
   public void initialize() {
-    // Inicializar o ComboBox com as faixas disponíveis
     faixaComboBox.getItems().addAll(
         "Branca",
         "Amarela",
@@ -55,7 +55,6 @@ public class CadastrarAlunoController {
     Aluno novoAluno = new Aluno(nome, dataNascimento, faixa);
 
     // TODO: Salvar o aluno
-    // AlunoRepository.save(novoAluno);
 
     mostrarAlerta("Sucesso", "Aluno cadastrado com sucesso!");
 
@@ -63,8 +62,9 @@ public class CadastrarAlunoController {
   }
 
   @FXML
-  private void cancelarCadastro() {
+  private void cancelarCadastro() throws IOException {
     limparCampos();
+    com.dojo.App.setRoot("main");
   }
 
   private void mostrarAlerta(String titulo, String mensagem) {
