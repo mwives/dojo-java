@@ -2,11 +2,12 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.cell.PropertyValueFactory?>
 
 <VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
   fx:controller="com.dojo.controller.aluno.VisualizarAlunosController" spacing="10"
@@ -26,10 +27,12 @@
     </columns>
   </TableView>
 
-  <Button text="Editar Aluno" onAction="#editarAluno" />
-  <Button text="Remover Aluno" onAction="#removerAluno" />
-  <Button text="Gerenciar Histórico de Faixas" onAction="#gerenciarHistoricoFaixas" />
+  <HBox spacing="10" alignment="CENTER">
+    <Button fx:id="editarAlunoButton" text="Editar Aluno" onAction="#editarAluno" />
+    <Button fx:id="removerAlunoButton" text="Remover Aluno" onAction="#removerAluno" />
+    <Button fx:id="gerenciarHistoricoFaixasButton" text="Gerenciar Histórico de Faixas"
+      onAction="#gerenciarHistoricoFaixas" />
+    <Button fx:id="atualizarListaButton" text="Atualizar" onAction="#atualizarLista" />
+  </HBox>
 
-  <Button text="Atualizar" onAction="#atualizarLista" />
-  <Button text="Fechar" onAction="#voltarTela" />
 </VBox>

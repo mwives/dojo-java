@@ -68,7 +68,7 @@ public class CadastrarAlunoController {
   @FXML
   private void cancelarCadastro() throws IOException {
     limparCampos();
-    com.dojo.App.setRoot("main");
+    com.dojo.App.setRoot("visualizar_alunos");
   }
 
   private void mostrarAlerta(String titulo, String mensagem) {
