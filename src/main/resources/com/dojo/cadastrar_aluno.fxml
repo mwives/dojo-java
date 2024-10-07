@@ -25,8 +25,6 @@
   <Label text="Data de Nascimento" />
   <DatePicker fx:id="dataNascimentoPicker" />
 
-  <!-- <Label text="Faixa Atual" />
-  <TextField fx:id="faixaField" promptText="Digite a faixa atual" /> -->
   <Label text="Faixa Atual" />
   <ComboBox fx:id="faixaComboBox" promptText="Selecione a faixa" />
 

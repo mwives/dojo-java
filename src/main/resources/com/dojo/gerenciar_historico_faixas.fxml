@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.collections.FXCollections?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.cell.*?>
+<?import javafx.scene.control.cell.ComboBoxListCell?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.*?>
 
 <VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
   fx:controller="com.dojo.controller.aluno.HistoricoFaixasController" spacing="10"
@@ -20,8 +22,8 @@
 
   <!-- Formulário -->
   <HBox spacing="10" alignment="CENTER">
-    <Label text="Nova Faixa:" />
-    <TextField fx:id="faixaTextField" promptText="Cor da Faixa" />
+    <Label text="Faixa Atual" />
+    <ComboBox fx:id="faixaComboBox" promptText="Selecione a faixa" />
   </HBox>
 
   <HBox spacing="10" alignment="CENTER">

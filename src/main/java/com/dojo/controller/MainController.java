@@ -17,11 +17,6 @@ public class MainController {
     }
 
     @FXML
-    private void handleGerenciarHistoricoFaixas() throws IOException {
-        com.dojo.App.setRoot("gerenciar_historico_faixas");
-    }
-
-    @FXML
     private void handleRegistrarCampeonato() throws IOException {
         com.dojo.App.setRoot("registrar_campeonato");
     }
