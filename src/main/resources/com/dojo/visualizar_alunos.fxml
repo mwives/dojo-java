@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-  fx:controller="com.dojo.controller.aluno.VisualizarAlunosController" spacing="10"
+  fx:controller="com.dojo.controller.VisualizarAlunosController" spacing="10"
   alignment="CENTER">
 
   <padding>

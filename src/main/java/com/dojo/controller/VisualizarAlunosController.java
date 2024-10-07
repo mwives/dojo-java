@@ -1,4 +1,4 @@
-package com.dojo.controller.aluno;
+package com.dojo.controller;
 
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
@@ -137,11 +137,6 @@ public class VisualizarAlunosController {
   @FXML
   public void atualizarLista() {
     carregarAlunos();
-  }
-
-  @FXML
-  private void voltarTela() throws IOException {
-    App.setRoot("main");
   }
 
 }

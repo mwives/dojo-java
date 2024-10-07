@@ -1,4 +1,4 @@
-package com.dojo.controller.aluno;
+package com.dojo.controller;
 
 import java.io.IOException;
 import java.time.LocalDate;

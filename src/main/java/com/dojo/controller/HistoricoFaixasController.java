@@ -1,4 +1,4 @@
-package com.dojo.controller.aluno;
+package com.dojo.controller;
 
 import java.time.LocalDate;
 import java.util.List;

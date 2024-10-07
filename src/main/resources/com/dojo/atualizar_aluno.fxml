@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.GridPane?>
 
 <GridPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-  fx:controller="com.dojo.controller.aluno.AtualizarAlunoController" hgap="10" vgap="10"
+  fx:controller="com.dojo.controller.AtualizarAlunoController" hgap="10" vgap="10"
   alignment="CENTER">
 
   <padding>
