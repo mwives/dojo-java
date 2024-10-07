@@ -70,6 +70,11 @@ public class VisualizarAlunosController {
   }
 
   @FXML
+  private void cadastrarAluno() throws IOException {
+    com.dojo.App.setRoot("cadastrar_aluno");
+  }
+
+  @FXML
   private void editarAluno() {
     Aluno alunoSelecionado = alunosTableView.getSelectionModel().getSelectedItem();
     if (alunoSelecionado != null) {
@@ -82,6 +87,7 @@ public class VisualizarAlunosController {
 
         AtualizarAlunoController controller = loader.getController();
         controller.inicializarCampos(alunoSelecionado);
+        controller.setVisualizarAlunosController(this);
 
         stage.showAndWait();
       } catch (IOException e) {
@@ -129,7 +135,7 @@ public class VisualizarAlunosController {
   }
 
   @FXML
-  private void atualizarLista() {
+  public void atualizarLista() {
     carregarAlunos();
   }
 

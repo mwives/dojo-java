@@ -3,6 +3,8 @@ package com.dojo.controller.aluno;
 import java.time.LocalDate;
 
 import com.dojo.model.Aluno;
+import com.dojo.repository.AlunoRepository;
+import com.dojo.repository.AlunoRepositorySQLite;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
@@ -11,6 +13,9 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class AtualizarAlunoController {
+
+  private AlunoRepository alunoRepository = new AlunoRepositorySQLite();
+  private VisualizarAlunosController visualizarAlunosController;
 
   @FXML
   private TextField nomeTextField;
@@ -41,6 +46,10 @@ public class AtualizarAlunoController {
         "6º Dan");
   }
 
+  public void setVisualizarAlunosController(VisualizarAlunosController visualizarAlunosController) {
+    this.visualizarAlunosController = visualizarAlunosController;
+  }
+
   public void inicializarCampos(Aluno aluno) {
     this.alunoAtual = aluno;
     nomeTextField.setText(aluno.getNome());
@@ -58,7 +67,11 @@ public class AtualizarAlunoController {
     alunoAtual.setDataNascimento(dataNascimento);
     alunoAtual.setFaixa(faixa);
 
-    // TODO: Atualizar no BD
+    alunoRepository.atualizar(alunoAtual);
+
+    if (visualizarAlunosController != null) {
+      visualizarAlunosController.atualizarLista();
+    }
 
     fecharTela();
   }
