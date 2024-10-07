@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.time.LocalDate;
 
 import com.dojo.model.Aluno;
+import com.dojo.repository.AlunoRepository;
+import com.dojo.repository.AlunoRepositorySQLite;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -12,6 +14,8 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
 public class CadastrarAlunoController {
+
+  private AlunoRepository alunoRepository = new AlunoRepositorySQLite();
 
   @FXML
   private TextField nomeField;
@@ -54,7 +58,7 @@ public class CadastrarAlunoController {
 
     Aluno novoAluno = new Aluno(nome, dataNascimento, faixa);
 
-    // TODO: Salvar o aluno
+    alunoRepository.adicionar(novoAluno);
 
     mostrarAlerta("Sucesso", "Aluno cadastrado com sucesso!");
 

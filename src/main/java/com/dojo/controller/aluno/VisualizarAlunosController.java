@@ -1,12 +1,13 @@
 package com.dojo.controller.aluno;
 
 import java.io.IOException;
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import com.dojo.App;
 import com.dojo.model.Aluno;
+import com.dojo.repository.AlunoRepository;
+import com.dojo.repository.AlunoRepositorySQLite;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,6 +23,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class VisualizarAlunosController {
+
+  private AlunoRepository alunoRepository = new AlunoRepositorySQLite();
 
   @FXML
   private TableView<Aluno> alunosTableView;
@@ -53,7 +56,7 @@ public class VisualizarAlunosController {
   }
 
   private void carregarAlunos() {
-    List<Aluno> alunosCadastrados = buscarAlunos(); // Implementar método para buscar alunos
+    List<Aluno> alunosCadastrados = buscarAlunos();
 
     alunosList.clear();
 
@@ -63,11 +66,7 @@ public class VisualizarAlunosController {
   }
 
   private List<Aluno> buscarAlunos() {
-    // TODO: carregar do BD
-    return List.of(
-        new Aluno("Carlos", LocalDate.of(2005, 5, 12), "Branca"),
-        new Aluno("Ana", LocalDate.of(2008, 3, 8), "Amarela"),
-        new Aluno("João", LocalDate.of(2003, 10, 15), "Verde"));
+    return alunoRepository.buscarTodos();
   }
 
   @FXML
@@ -101,8 +100,8 @@ public class VisualizarAlunosController {
       alert.setContentText("Tem certeza que deseja remover o aluno " + alunoSelecionado.getNome() + "?");
 
       if (alert.showAndWait().get() == ButtonType.OK) {
+        alunoRepository.remover(alunoSelecionado);
         alunosList.remove(alunoSelecionado);
-        // TODO: Remover do BD
         alunosTableView.refresh();
       }
     }
