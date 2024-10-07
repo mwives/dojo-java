@@ -1,4 +1,6 @@
 module com.dojo {
+    requires java.sql;
+
     requires javafx.controls;
     requires javafx.fxml;
 
