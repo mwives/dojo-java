@@ -56,17 +56,10 @@ public class VisualizarAlunosController {
   }
 
   public void carregarAlunos() {
-    List<Aluno> alunosCadastrados = buscarAlunos();
-
+    List<Aluno> alunosCadastrados = alunoRepository.buscarTodos();
     alunosList.clear();
-
     alunosList.addAll(alunosCadastrados);
-
     alunosTableView.setItems(alunosList);
-  }
-
-  private List<Aluno> buscarAlunos() {
-    return alunoRepository.buscarTodos();
   }
 
   @FXML
@@ -114,11 +107,11 @@ public class VisualizarAlunosController {
   }
 
   @FXML
-  private void gerenciarHistoricoFaixas() {
+  private void adicionarFaixa() {
     Aluno alunoSelecionado = alunosTableView.getSelectionModel().getSelectedItem();
     if (alunoSelecionado != null) {
       try {
-        FXMLLoader loader = new FXMLLoader(App.class.getResource("gerenciar_historico_faixas.fxml"));
+        FXMLLoader loader = new FXMLLoader(App.class.getResource("historico_faixas.fxml"));
         Stage stage = new Stage();
         stage.setTitle("Gerenciar Histórico de Faixas");
         stage.initModality(Modality.APPLICATION_MODAL);
