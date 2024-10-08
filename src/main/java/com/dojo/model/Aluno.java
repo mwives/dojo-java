@@ -69,7 +69,7 @@ public class Aluno {
   // Métodos
   public void adicionarFaixa(HistoricoFaixa faixa) {
     historicoFaixas.add(faixa);
-    this.faixa = faixa.getCorFaixa();
+    this.faixa = faixa.getFaixa();
   }
 
 }
