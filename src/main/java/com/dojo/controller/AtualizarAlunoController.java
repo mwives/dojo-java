@@ -72,7 +72,7 @@ public class AtualizarAlunoController {
     alunoRepository.atualizar(alunoAtual);
 
     if (visualizarAlunosController != null) {
-      visualizarAlunosController.atualizarLista();
+      visualizarAlunosController.carregarAlunos();
     }
 
     fecharTela();

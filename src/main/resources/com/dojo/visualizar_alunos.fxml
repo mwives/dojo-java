@@ -28,11 +28,11 @@
   </TableView>
 
   <HBox spacing="10" alignment="CENTER">
+    <Button fx:id="cadastrarAlunoButton" text="Cadastrar Aluno" onAction="#cadastrarAluno" />
     <Button fx:id="editarAlunoButton" text="Editar Aluno" onAction="#editarAluno" />
     <Button fx:id="removerAlunoButton" text="Remover Aluno" onAction="#removerAluno" />
     <Button fx:id="gerenciarHistoricoFaixasButton" text="Gerenciar Histórico de Faixas"
       onAction="#gerenciarHistoricoFaixas" />
-    <Button fx:id="atualizarListaButton" text="Atualizar" onAction="#atualizarLista" />
   </HBox>
 
 </VBox>

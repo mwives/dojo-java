@@ -55,7 +55,7 @@ public class VisualizarAlunosController {
     carregarAlunos();
   }
 
-  private void carregarAlunos() {
+  public void carregarAlunos() {
     List<Aluno> alunosCadastrados = buscarAlunos();
 
     alunosList.clear();
@@ -132,11 +132,6 @@ public class VisualizarAlunosController {
         e.printStackTrace();
       }
     }
-  }
-
-  @FXML
-  public void atualizarLista() {
-    carregarAlunos();
   }
 
 }
