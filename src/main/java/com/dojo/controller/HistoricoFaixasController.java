@@ -96,14 +96,21 @@ public class HistoricoFaixasController {
 
       historicoFaixasList.add(novoHistoricoFaixa);
       historicoFaixasTableView.refresh();
+
+      this.resetaFormulario();
     }
+  }
+
+  private void resetaFormulario() {
+    faixaComboBox.getSelectionModel().clearSelection();
+    dataGraduacaoDatePicker.setValue(null);
   }
 
   @FXML
   private void removerFaixa() {
     HistoricoFaixa faixaSelecionada = historicoFaixasTableView.getSelectionModel().getSelectedItem();
     if (faixaSelecionada != null) {
-      boolean confirmacao = confirmarRemocao();
+      boolean confirmacao = confirmarRemoverFaixa();
       if (confirmacao) {
         historicoFaixaRepository.remover(faixaSelecionada.getId());
         historicoFaixasList.remove(faixaSelecionada);
@@ -112,7 +119,7 @@ public class HistoricoFaixasController {
     }
   }
 
-  private boolean confirmarRemocao() {
+  private boolean confirmarRemoverFaixa() {
     Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
     alert.setTitle("Confirmação");
     alert.setHeaderText("Remover Faixa");
