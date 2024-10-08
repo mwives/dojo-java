@@ -1,21 +1,30 @@
 package com.dojo.controller;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Optional;
 
 import com.dojo.model.Aluno;
 import com.dojo.model.HistoricoFaixa;
+import com.dojo.repository.HistoricoFaixaRepository;
+import com.dojo.repository.HistoricoFaixaRepositorySQLite;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 public class HistoricoFaixasController {
+
+  private HistoricoFaixaRepository historicoFaixaRepository = new HistoricoFaixaRepositorySQLite();
 
   private Aluno alunoSelecionado;
 
@@ -50,6 +59,14 @@ public class HistoricoFaixasController {
         "4º Dan",
         "5º Dan",
         "6º Dan");
+
+    faixaColumn.setCellValueFactory(new PropertyValueFactory<>("faixa"));
+
+    dataFaixaColumn.setCellValueFactory(cellData -> {
+      LocalDate dataFaixa = cellData.getValue().getDataObtencao();
+      return new javafx.beans.property.SimpleStringProperty(
+          dataFaixa.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+    });
   }
 
   private ObservableList<HistoricoFaixa> historicoFaixasList = FXCollections.observableArrayList();
@@ -61,18 +78,11 @@ public class HistoricoFaixasController {
 
   private void carregarHistoricoFaixas() {
     if (alunoSelecionado != null) {
-      List<HistoricoFaixa> historico = buscarHistoricoFaixas(alunoSelecionado);
+      List<HistoricoFaixa> historico = historicoFaixaRepository.buscarPorIdAluno(alunoSelecionado.getId());
       historicoFaixasList.clear();
       historicoFaixasList.addAll(historico);
       historicoFaixasTableView.setItems(historicoFaixasList);
     }
-  }
-
-  private List<HistoricoFaixa> buscarHistoricoFaixas(Aluno aluno) {
-    // TODO: Buscar do BD
-    return List.of(
-        new HistoricoFaixa("Branca", LocalDate.of(2019, 5, 12)),
-        new HistoricoFaixa("Amarela", LocalDate.of(2020, 7, 8)));
   }
 
   @FXML
@@ -81,13 +91,35 @@ public class HistoricoFaixasController {
     LocalDate dataGraduacao = dataGraduacaoDatePicker.getValue();
 
     if (novaFaixa != null && !novaFaixa.isEmpty() && dataGraduacao != null) {
-      HistoricoFaixa novaGraduacao = new HistoricoFaixa(novaFaixa, dataGraduacao);
-      historicoFaixasList.add(novaGraduacao);
-      historicoFaixasTableView.refresh();
+      HistoricoFaixa novoHistoricoFaixa = historicoFaixaRepository.adicionar(alunoSelecionado.getId(),
+          new HistoricoFaixa(novaFaixa, dataGraduacao));
 
-      System.out.println("Nova faixa: " + novaFaixa + " em " + dataGraduacao);
-      // TODO: Salvar no BD
+      historicoFaixasList.add(novoHistoricoFaixa);
+      historicoFaixasTableView.refresh();
     }
+  }
+
+  @FXML
+  private void removerFaixa() {
+    HistoricoFaixa faixaSelecionada = historicoFaixasTableView.getSelectionModel().getSelectedItem();
+    if (faixaSelecionada != null) {
+      boolean confirmacao = confirmarRemocao();
+      if (confirmacao) {
+        historicoFaixaRepository.remover(faixaSelecionada.getId());
+        historicoFaixasList.remove(faixaSelecionada);
+        historicoFaixasTableView.refresh();
+      }
+    }
+  }
+
+  private boolean confirmarRemocao() {
+    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+    alert.setTitle("Confirmação");
+    alert.setHeaderText("Remover Faixa");
+    alert.setContentText("Deseja realmente remover a faixa selecionada?");
+
+    Optional<ButtonType> result = alert.showAndWait();
+    return result.get() == ButtonType.OK;
   }
 
   @FXML

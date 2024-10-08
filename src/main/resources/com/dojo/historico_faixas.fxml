@@ -33,6 +33,7 @@
 
   <HBox spacing="10" alignment="CENTER">
     <Button text="Adicionar Faixa" onAction="#adicionarFaixa" />
+    <Button text="Remover Faixa" onAction="#removerFaixa" />
     <Button text="Fechar" onAction="#fecharTela" />
   </HBox>
 
