@@ -59,10 +59,12 @@ public class AtualizarAlunoController {
 
   @FXML
   public void salvarAluno() {
+    Integer id = alunoAtual.getId();
     String nome = nomeTextField.getText();
     LocalDate dataNascimento = dataNascimentoPicker.getValue();
     String faixa = faixaComboBox.getValue();
 
+    alunoAtual.setId(id);
     alunoAtual.setNome(nome);
     alunoAtual.setDataNascimento(dataNascimento);
     alunoAtual.setFaixa(faixa);

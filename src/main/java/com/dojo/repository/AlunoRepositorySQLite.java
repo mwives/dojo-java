@@ -51,13 +51,13 @@ public class AlunoRepositorySQLite implements AlunoRepository {
 
   @Override
   public void atualizar(Aluno aluno) {
-    String sql = "UPDATE alunos SET nome = ?, data_nascimento = ?, faixa = ? WHERE nome = ?";
+    String sql = "UPDATE alunos SET nome = ?, data_nascimento = ?, faixa = ? WHERE id = ?";
     try (Connection conn = DriverManager.getConnection(DB_URL);
         PreparedStatement pstmt = conn.prepareStatement(sql)) {
       pstmt.setString(1, aluno.getNome());
       pstmt.setString(2, aluno.getDataNascimento().toString());
       pstmt.setString(3, aluno.getFaixa());
-      pstmt.setString(4, aluno.getNome());
+      pstmt.setInt(4, aluno.getId());
       pstmt.executeUpdate();
     } catch (SQLException e) {
       System.out.println(e.getMessage());
@@ -66,10 +66,10 @@ public class AlunoRepositorySQLite implements AlunoRepository {
 
   @Override
   public void remover(Aluno aluno) {
-    String sql = "DELETE FROM alunos WHERE nome = ?";
+    String sql = "DELETE FROM alunos WHERE id = ?";
     try (Connection conn = DriverManager.getConnection(DB_URL);
         PreparedStatement pstmt = conn.prepareStatement(sql)) {
-      pstmt.setString(1, aluno.getNome());
+      pstmt.setInt(1, aluno.getId());
       pstmt.executeUpdate();
     } catch (SQLException e) {
       System.out.println(e.getMessage());
@@ -85,10 +85,11 @@ public class AlunoRepositorySQLite implements AlunoRepository {
       ResultSet rs = pstmt.executeQuery();
 
       if (rs.next()) {
+        Integer id = rs.getInt("id");
         String nomeAluno = rs.getString("nome");
         LocalDate dataNascimento = LocalDate.parse(rs.getString("data_nascimento"));
         String faixa = rs.getString("faixa");
-        return new Aluno(nomeAluno, dataNascimento, faixa);
+        return new Aluno(id, nomeAluno, dataNascimento, faixa);
       }
     } catch (SQLException e) {
       System.out.println(e.getMessage());
@@ -105,10 +106,11 @@ public class AlunoRepositorySQLite implements AlunoRepository {
         ResultSet rs = stmt.executeQuery(sql)) {
 
       while (rs.next()) {
+        Integer id = rs.getInt("id");
         String nome = rs.getString("nome");
         LocalDate dataNascimento = LocalDate.parse(rs.getString("data_nascimento"));
         String faixa = rs.getString("faixa");
-        alunos.add(new Aluno(nome, dataNascimento, faixa));
+        alunos.add(new Aluno(id, nome, dataNascimento, faixa));
       }
     } catch (SQLException e) {
       System.out.println(e.getMessage());

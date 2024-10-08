@@ -6,11 +6,20 @@ import java.util.List;
 
 public class Aluno {
 
+  private Integer id;
   private String nome;
   private LocalDate dataNascimento;
   private String faixa;
 
   private List<HistoricoFaixa> historicoFaixas;
+
+  public Aluno(Integer id, String nome, LocalDate dataNascimento, String faixa) {
+    this.id = id;
+    this.nome = nome;
+    this.dataNascimento = dataNascimento;
+    this.faixa = faixa;
+    this.historicoFaixas = new ArrayList<>();
+  }
 
   public Aluno(String nome, LocalDate dataNascimento, String faixa) {
     this.nome = nome;
@@ -20,6 +29,10 @@ public class Aluno {
   }
 
   // Getters
+  public Integer getId() {
+    return id;
+  }
+
   public String getNome() {
     return nome;
   }
@@ -37,6 +50,10 @@ public class Aluno {
   }
 
   // Setters
+  public void setId(Integer id) {
+    this.id = id;
+  }
+
   public void setNome(String nome) {
     this.nome = nome;
   }
